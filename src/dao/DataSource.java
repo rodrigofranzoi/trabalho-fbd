@@ -17,19 +17,25 @@ public class DataSource {
     public DataSource() {
         try {
             hostname = "localhost";
-            port     = 3306;
-            database = "academia";
-            username = "root";
-            password = "aaa";
+            port      = 9000;
+            //port     = 3306;
+            //port     = 5433;
+            database = "postgres";
+            username = "postgres";
+            password = "melancia";
 
-            String url = "jdbc:mysql://" + hostname + ":" + port + "/" + database;
-            DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+            //String url = "jdbc:postgresql://localhost:5432/example"
+            String url = "jdbc:postgresql://" + hostname + ":" + port + "/" + database;
+
+            //String url = "jdbc:mysql://" + hostname + ":" + port + "/" + database;
+            //DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+            DriverManager.registerDriver(new org.postgresql.Driver());
             connection = DriverManager.getConnection(url, username, password);
 
         } catch (SQLException ex) {
-            System.err.println("Erro Conexão" + ex.getMessage());
+            System.err.println("Erro Conexão " + ex.getMessage());
         } catch (Exception ex) {
-            System.err.println("Erro" + ex.getMessage());
+            System.err.println("Erro " + ex.getMessage());
         }
 
 
@@ -45,7 +51,7 @@ public class DataSource {
             connection.close();
             System.out.println("Conexão encerrada com sucesso!");
         } catch (SQLException ex) {
-            System.err.println("Erro para desconectar" + ex.getMessage());
+            System.err.println("Erro para desconectar " + ex.getMessage());
         }
 
     }
