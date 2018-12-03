@@ -17,20 +17,16 @@ public class DataSource {
     public DataSource() {
         try {
             hostname = "localhost";
-            port      = 9000;
-            //port     = 3306;
-            //port     = 5433;
+            port = 5432;
             database = "postgres";
             username = "postgres";
             password = "melancia";
 
-            //String url = "jdbc:postgresql://localhost:5432/example"
             String url = "jdbc:postgresql://" + hostname + ":" + port + "/" + database;
-
-            //String url = "jdbc:mysql://" + hostname + ":" + port + "/" + database;
-            //DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+            //String url = "postgresql://localhost";
             DriverManager.registerDriver(new org.postgresql.Driver());
             connection = DriverManager.getConnection(url, username, password);
+            System.out.println("Conexão Efetuada!");
 
         } catch (SQLException ex) {
             System.err.println("Erro Conexão " + ex.getMessage());
